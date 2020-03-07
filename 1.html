@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Jumlah Iguana</title>
+    <style>
+        .form {
+            border: 1px solid #000000;
+            border-radius: 10px 10px 10px 10px;
+            padding: 20px;
+            width: 470px;
+            height: 100px;
+            margin: 50px auto;
+            box-shadow: 0px 7px 21px -6px rgba(0,0,0,0.52);
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1)
+            100%);
+        }
+
+        .iguana {
+            border: 1px solid #1cc1e6;
+            padding: 10px;
+            margin-right: 5px;
+        }
+
+        .hari {
+            border: 1px solid #1cc1e6;
+            padding: 10px;
+            margin-right: 5px;
+        }
+
+        .button {
+            border: none;
+            padding: 10px;
+            background-color: #1cc1e6;
+            color: white;
+        }
+
+        .button:hover {
+            background-color: #1c8da7;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="#" class="form">
+        <label>
+            <input class="iguana" type="number" id="iguana" required placeholder="Jumlah Iguana sekarang">
+            <input class="hari" type="number" id="hari" required placeholder="Jumlah hari untuk dihitung">
+            <input class="button" type="button" onclick="hitungIguana()" value="Hitung">
+        </label>
+        <div id="hasil"><br>Hasil:</div>
+    </form>
+
+    <script>
+        
+        const hitungIguana = () => {
+            const iguana = parseInt(document.getElementById('iguana').value); //2169
+            const hari = document.getElementById('hari').value; //276
+            const persentaseMatiSebelumMelahirkan = 0.111;
+            const jumlahKelahiran = hari / 92;
+            const iguanaMati = Math.round(iguana * persentaseMatiSebelumMelahirkan);
+            let total = 0;
+            for (let i = 0; i < jumlahKelahiran; i++) {
+                total += iguana + (iguana - iguanaMati);
+            }
+
+            const hasil = document.getElementById('hasil');
+            return hasil.innerHTML = `<br>Jadi, jumlah iguana setelah ${hari} hari adalah ${total} ekor.`; //12291    
+        }
+    </script>
+</body>
+</html>

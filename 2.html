@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Kembalian</title>
+    <style>
+        .counter {
+            background: rgba(210,255,82,1);
+            background: linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+            width: 600px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 6px -4px 11px -3px rgba(0,0,0,0.64);
+            border-radius: 7px 7px 7px 7px;
+        }
+        
+        .total-belanja, .uang-masuk, .button {
+            padding: 10px;
+            margin-right: 5px;
+            border: none;
+        }
+
+        .button {
+            color: white;
+            background-color: rgb(72, 156, 224);
+        }
+
+        .button:hover {
+        background-color: teal;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter">
+        <form action="#" class="form">
+            <label>
+                <input class="total-belanja" type="number" id="total-belanja" required placeholder="Total Belanja">
+                <input class="uang-masuk" type="number" id="uang-masuk" required placeholder="Uang yang dimasukkan">
+                <input class="button" type="button" onclick="hitungKembalian()" value="Hitung Kembalian">
+            </label>
+            <div id="hasil"><br>Kembalian Anda:</div>
+        </form>
+    </div>
+
+    <script>
+
+        const hitungKembalian = () => {
+
+            const totalBelanja = document.getElementById('total-belanja').value;
+            const uang = document.getElementById('uang-masuk').value;
+
+            let sisa = uang - totalBelanja;
+            let kembalian1, kembalian2, kembalian3, kembalian4;
+
+            kembalian1 = sisa / 20000;
+            if (kembalian1 > 0) {
+                sisa = sisa % 20000
+            }
+
+            kembalian2 = sisa / 5000;
+            if (kembalian2 > 0) {
+                sisa = sisa % 5000
+            }
+
+            kembalian3 = sisa / 1000;
+            if (kembalian3 > 0) {
+                sisa = sisa % 1000;
+            }
+
+            kembalian4 = sisa / 500;
+            if (kembalian4 > 0) {
+                sisa = sisa % 500;
+            }
+
+            console.log(`${kembalian1}, ${kembalian2} , ${kembalian3}, ${kembalian4}`);
+            const hasil = document.getElementById('hasil');
+            hasil.innerHTML = `<br>
+                <p>Kembalian:</p>
+                <ul>
+                    <li>${konversiKembalian(kembalian1)} 20000</li>
+                    <li>${konversiKembalian(kembalian2)} 5000</li>
+                    <li>${konversiKembalian(kembalian3)} 1000</li>
+                    <li>${konversiKoin(kembalian4)} 500</li>
+                </ul>
+            `
+        }
+
+        const konversiKembalian = (k) => {
+            i = Math.floor(k);
+            const banyakLembar = ['Nol lembar', 'Selembar', 'Dua lembar', 'Tiga lembar', 'Empat lembar', 'Lima lembar'];
+            const str = banyakLembar[i];
+            return str;
+        } 
+
+        const konversiKoin = (coin) => {
+            i = Math.floor(coin);
+            const banyakKoin = ['Nol koin', 'Satu koin'];
+            const str = banyakKoin[i];
+            return str;
+        }
+    </script>
+</body>
+</html>
